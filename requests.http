@@ -1,0 +1,26 @@
+### Get list cars
+GET http://127.0.0.1:8383/api/v1/cars
+Accept: application/json
+Content-Type: application/json
+
+### Get cars by id
+GET http://127.0.0.1:8383/api/v1/cars/{id}
+Accept: application/json
+Content-Type: application/json
+
+### Loan calculation based on criteria from the loan form
+GET http://127.0.0.1:8383/api/v1/credit/calculate?price={price}&initialPayment={initialPayment}&loanTerm={loanTerm}
+Accept: application/json
+Content-Type: application/json
+
+### Saving an application with the specified parameters from the loan form
+POST http://127.0.0.1:8383/api/v1/request
+Accept: application/json
+Content-Type: application/json
+
+{
+    "carId": 1,
+    "programId": 1,
+    "initialPayment": 1000,
+    "loanTerm": 1
+}

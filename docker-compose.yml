@@ -1,0 +1,27 @@
+services:
+    cars:
+        user: app
+        build:
+            context: .
+            args:
+                USER_ID: ${USER_ID:-1000}
+        ports:
+            - "8383:8383"
+        volumes:
+            - .:/app:rw
+        environment:
+            - APP_ENV=dev
+
+    postgres_cars:
+        image: postgres:15
+        ports:
+            - "54321:5432"
+        container_name: 'postgresql_cars'
+        working_dir: /app
+        restart: always
+        environment:
+            POSTGRES_DB: 'db'
+            POSTGRES_USER: 'user'
+            POSTGRES_PASSWORD: '123'
+        volumes:
+            - ./var/postgresql:/var/lib/postgresql/data
