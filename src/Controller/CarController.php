@@ -21,4 +21,10 @@ class CarController extends AbstractController
     {
         return $this->json($this->carService->getCarById($id));
     }
+
+    #[Route(path: '/api/v1/cars', methods: ['GET'])]
+    public function cars(): Response
+    {
+        return $this->json($this->carService->getCars());
+    }
 }

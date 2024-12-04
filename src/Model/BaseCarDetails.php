@@ -2,17 +2,18 @@
 
 namespace App\Model;
 
+
 class BaseCarDetails
 {
     private int $id;
 
     /**
-     * @var string[]
+     * @var BrandList[]
      */
     private array $brand;
 
     /**
-     * @var string[]
+     * @var BrandList[]
      */
     private array $model;
 
@@ -39,13 +40,7 @@ class BaseCarDetails
         return $this->brand;
     }
 
-
-    /**
-     * @param string[]|null $brand
-     *
-     * @return $this
-     */
-    public function setBrand(?array $brand): self
+    public function setBrand(array $brand): self
     {
         $this->brand = $brand;
 

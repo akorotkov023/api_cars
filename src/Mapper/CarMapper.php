@@ -11,9 +11,10 @@ class CarMapper
     {
         $model
             ->setId($car->getId())
-//            ->setBrand($car->getBrand())
-//            ->setModel($car->getModel())
             ->setPhoto($car->getPhoto())
-            ->setPrice($car->getPrice());
+            ->setPrice($car->getPrice())
+            ->setBrand([$car->getBrand()->getId(), $car->getBrand()->getName()])
+            ->setModel([$car->getModel()->getId(), $car->getModel()->getName()]);
     }
+
 }

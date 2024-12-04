@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Car;
-use App\Exception\BookNotFoundException;
 use App\Exception\CarNotFoundException;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +17,7 @@ class CarRepository extends ServiceEntityRepository
         parent::__construct($registry, Car::class);
     }
 
-    public function getPublishedById($id): ?Car
+    public function getCarById($id): ?Car
     {
         $car = $this->createQueryBuilder('c')
             ->andWhere('c.id = :val')
@@ -31,9 +30,20 @@ class CarRepository extends ServiceEntityRepository
         }
         return $car;
     }
-
-
-
+//
+//    public function getCars(): array
+//    {
+//        $car = $this->createQueryBuilder('c')
+//            ->andWhere('c.id = :val')
+//            ->setParameter('val')
+//            ->getQuery()
+//            ->getResult();
+//
+//        if (null === $car) {
+//            throw new CarNotFoundException();
+//        }
+//        return $car;
+//    }
 
     //    public function findOneBySomeField($value): ?Car
     //    {
