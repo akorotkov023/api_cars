@@ -16,8 +16,7 @@ API имеет следующие endpoint’s:
 GET http://127.0.0.1:8383/api/v1/cars
 
 ```json
-
-ANSWER: [
+[
     {
         "id": int,
         "brand":
@@ -39,7 +38,7 @@ ANSWER: [
 http://127.0.0.1:8383/api/v1/cars/{id}
 
 ```json
-ANSWER: {
+{
     "id": int,
     "brand":
     {
@@ -60,7 +59,7 @@ ANSWER: {
    
 GET http://127.0.0.1:8383/api/v1/credit/calculate?price={price}&initialPayment={initialPayment}&loanTerm={loanTerm}
 ```json
-ANSWER: {
+{
    "programId": int,
    "interestRate": int,
    "monthlyPayment": int,
@@ -101,7 +100,7 @@ BODY: {
 }
 
 ```json
-ANSWER: {“success”: bool}
+{“success”: bool}
 ```
 
 
