@@ -32,7 +32,7 @@ readonly class ApiExceptionListener
 
         if ($mapping->getCode() >= Response::HTTP_INTERNAL_SERVER_ERROR || $mapping->isLoggable()) {
             $this->logger->error($throwable->getMessage(), [
-                'trace' => $throwable->getTrace(),
+                'trace' => $throwable->getTraceAsString(),
                 'previous' => null !== $throwable->getPrevious() ? $throwable->getPrevious()->getMessage() : '',
             ]);
         }
@@ -40,6 +40,7 @@ readonly class ApiExceptionListener
         $message = $mapping->isHidden() && !$this->isDebug
             ? Response::$statusTexts[$mapping->getCode()]
             : $throwable->getMessage();
+
         $details = $this->isDebug ? new ErrorDebugDetails($throwable->getTraceAsString()) : null;
         $data = $this->serializer->serialize(new ErrorResponse($message, $details), JsonEncoder::FORMAT);
 

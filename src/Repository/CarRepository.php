@@ -30,6 +30,11 @@ class CarRepository extends ServiceEntityRepository
         }
         return $car;
     }
+
+    public function existsById(int $id): bool
+    {
+        return null !== $this->find($id);
+    }
 //
 //    public function getCars(): array
 //    {

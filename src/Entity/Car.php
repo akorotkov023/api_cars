@@ -29,6 +29,9 @@ class Car
     #[ORM\Column(type: 'integer')]
     private int $price;
 
+    #[ORM\OneToMany(targetEntity: Credit::class, mappedBy: "carId")]
+    private Collection $cars;
+
     public function getId(): int
     {
         return $this->id;
