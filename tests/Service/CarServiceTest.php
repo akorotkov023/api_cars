@@ -4,11 +4,12 @@ namespace App\Tests\Service;
 
 use App\Entity\Car;
 use App\Model\CarDetails;
+use App\Model\CarListItem;
+use App\Model\CarListResponse;
 use App\Repository\CarRepository;
 use App\Service\CarService;
 use App\Tests\AbstractTestCase;
 use App\Tests\MockUtils;
-use App\Model\BrandList as CollectListModel;
 
 class CarServiceTest extends AbstractTestCase
 {
@@ -64,5 +65,17 @@ class CarServiceTest extends AbstractTestCase
         $car->setModel($model);
 
         return $car;
+    }
+
+    public function testGetCars(): void
+    {
+        $car1 = $this->createCarEntity();
+        $car2 = $this->createCarEntity();
+        $this->carRepository->method('findAll')->willReturn([$car1, $car2]);
+
+        $response = $this->createCarService()->getCars();
+
+        $this->assertInstanceOf(CarListResponse::class, $response);
+        $this->assertCount(2, $response->getItems());
     }
 }
