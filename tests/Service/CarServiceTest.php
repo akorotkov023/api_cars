@@ -4,7 +4,6 @@ namespace App\Tests\Service;
 
 use App\Entity\Car;
 use App\Model\CarDetails;
-use App\Model\CarListItem;
 use App\Model\CarListResponse;
 use App\Repository\CarRepository;
 use App\Service\CarService;
