@@ -8,6 +8,7 @@ use App\Exception\CreditProgramNotFoundException;
 use App\Model\CalculatePriceRequest;
 use App\Repository\CarRepository;
 use App\Repository\CreditProgramRepository;
+use App\Service\Validator\CarValidator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +19,7 @@ readonly class CreditService
         private CarRepository $carRepository,
         private CreditProgramRepository $creditProgramRepository,
         private EntityManagerInterface $em,
-        private ValidatorService $validatorService
+        private CarValidator $validatorService
     ){}
 
     public function calculateLoan($request): JsonResponse
@@ -28,7 +29,7 @@ readonly class CreditService
             (float)$request->query->get('initialPayment') ?? null,
             (int)$request->query->get('loanTerm')) ?? null;
 
-        $this->validatorService->valid($model);
+        $this->validatorService->validate($model);
 
         //TODO переделать по условию кредитные программы должны храниться в БД
         $loanAmount = $model->price - $model->initialPayment;

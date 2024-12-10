@@ -5,7 +5,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     exceptions:
-        Symfony\Component\HttpKernel\Exception\NotFoundHttpException: { code: 406 }
+        Symfony\Component\HttpKernel\Exception\NotFoundHttpException: { code: 404 }
+        Symfony\Component\HttpKernel\Exception\HttpException: { code: 400 }
         App\Exception\CarNotFoundException: { code: 400, hidden: false }
         App\Exception\CarsNotFoundException: { code: 400, hidden: false }
         App\Exception\CreditProgramNotFoundException: { code: 400, hidden: false }
